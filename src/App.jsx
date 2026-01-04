@@ -1,11 +1,34 @@
-import React from 'react'
-const App = () => {
+import Loader from "./components/Loader";
+import Hero from "./sections/Hero";
+import { useLenis } from "./hooks/useLenis";
+import { AppProvider } from "./context/Appcontext";
+import { useApp } from "./context/useApp";
+
+
+function App() {
   return (
-    <div>
-      
-    </div>
-  )
+    <AppProvider>
+      <Main />
+    </AppProvider>
+  );
 }
 
-export default App ;
+function Main() {
+  const { isLoaded, setIsLoaded } = useApp();
 
+  useLenis(isLoaded);
+
+  return (
+    <>
+      {!isLoaded && (
+        <Loader onComplete={() => setIsLoaded(true)} />
+      )}
+
+      <main className={isLoaded ? "visible" : "invisible"}>
+        <Hero />
+      </main>
+    </>
+  );
+}
+
+export default App;
