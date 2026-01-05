@@ -1,29 +1,44 @@
 @import "tailwindcss";
-.lobster-two-regular {
-  font-family: "Lobster Two", sans-serif;
+.tinos-regular {
+  font-family: "Tinos", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.lobster-two-bold {
-  font-family: "Lobster Two", sans-serif;
+.tinos-bold {
+  font-family: "Tinos", serif;
   font-weight: 700;
   font-style: normal;
 }
 
-.lobster-two-regular-italic {
-  font-family: "Lobster Two", sans-serif;
+.tinos-regular-italic {
+  font-family: "Tinos", serif;
   font-weight: 400;
   font-style: italic;
 }
 
-.lobster-two-bold-italic {
-  font-family: "Lobster Two", sans-serif;
+.tinos-bold-italic {
+  font-family: "Tinos", serif;
   font-weight: 700;
   font-style: italic;
 }
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+body {
+  font-family: "Tinos", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+.nav--hero {
+  @apply text-white bg-black/20;
+}
+
+.nav--scrolled {
+  @apply text-black bg-white/60;
 }

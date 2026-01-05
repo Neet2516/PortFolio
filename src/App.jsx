@@ -3,6 +3,7 @@ import Hero from "./sections/Hero";
 import { useLenis } from "./hooks/useLenis";
 import { AppProvider } from "./context/Appcontext";
 import { useApp } from "./context/useApp";
+import MainLayout from "./layouts/MainLayout";
 
 
 function App() {
@@ -25,7 +26,7 @@ function Main() {
       )}
 
       <main className={isLoaded ? "visible" : "invisible"}>
-        <Hero />
+        <MainLayout/>
       </main>
     </>
   );

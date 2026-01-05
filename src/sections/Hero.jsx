@@ -67,7 +67,7 @@ const Hero = () => {
   }, [isLoaded]);
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden">
+    <section id="home" className="relative h-screen w-screen overflow-hidden">
       <Dot />
 
       <div
@@ -85,7 +85,7 @@ const Hero = () => {
       <div className="relative z-20 h-full  px-8">
         <h1
           ref={textRef}
-          className="bebas-neue-regular text-white leading-none text-[clamp(3rem,12vw,20rem)]"
+          className="bebas-neue-regular text-white uppercase leading-none text-[clamp(3rem,12vw,20rem)]"
         >
           {["NAVNEET SINHA", "\u00A0\u00A0Frontend Devloper"].map((word, i) => (
             <div key={i} className="overflow-hidden">

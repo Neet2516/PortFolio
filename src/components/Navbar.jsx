@@ -8,53 +8,70 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => {
   const navRef = useRef(null);
   const lastScroll = useRef(0);
+  const links = {
+    Home: "#home",
+    About: "#about",
+    Skills:"#skills",
+    Projects: "#projects",
+    Contact: "#contact",
+
+  };
 
   useEffect(() => {
     const nav = navRef.current;
 
-    gsap.set(nav, { y: 0, opacity: 1 });
+    // Initial hero state
+    nav.classList.add("nav--hero");
 
-    // Auto-hide on scroll down, show on scroll up
-    ScrollTrigger.create({
+    // Auto-hide ONLY while in hero
+    const hideTrigger = ScrollTrigger.create({
       start: 0,
-      end: "max",
+      end: () => document.querySelector("#about")?.offsetTop || 0,
       onUpdate: (self) => {
         const current = self.scroll();
 
         if (current > lastScroll.current && current > 120) {
-          gsap.to(nav, {
-            y: -100,
-            opacity: 0,
-            duration: 0.4,
-            ease: "power3.out",
-          });
+          gsap.to(nav, { y: -100, opacity: 0, duration: 0.4 });
         } else {
-          gsap.to(nav, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power3.out",
-          });
+          gsap.to(nav, { y: 0, opacity: 1, duration: 0.4 });
         }
 
         lastScroll.current = current;
       },
     });
 
-    // Sticky behavior
+    // 🔥 MAIN TRIGGER — ABOUT SECTION
     ScrollTrigger.create({
-      trigger: nav,
+      trigger: "#about",
       start: "top top",
+
       onEnter: () => {
+        // Fix navbar
         gsap.set(nav, {
           position: "fixed",
           top: 0,
           left: 0,
           width: "100%",
+          y: 0,
+          opacity: 1,
         });
+
+        // Switch colors
+        nav.classList.remove("nav--hero");
+        nav.classList.add("nav--scrolled");
+
+        // Disable auto-hide
+        hideTrigger.disable();
       },
+
       onLeaveBack: () => {
+        // Back to hero behavior
         gsap.set(nav, { position: "relative" });
+
+        nav.classList.remove("nav--scrolled");
+        nav.classList.add("nav--hero");
+
+        hideTrigger.enable();
       },
     });
   }, []);
@@ -66,15 +83,14 @@ const Navbar = () => {
         relative z-50 w-screen
         px-8 py-5
         flex items-center justify-between
+        backdrop-blur-md
         border-b border-black/10
-       text-white bg-transparent
+        uppercase
+        transition-colors duration-500
       "
     >
-      
-
-      {/* Links */}
       <ul className="flex gap-8 text-sm">
-        {["Home","About", "Projects", "Contact"].map((item) => (
+        {Object.keys(links).map((item) => (
           <li
             key={item}
             className="
@@ -84,10 +100,10 @@ const Navbar = () => {
               after:bg-current
               after:transition-all
               hover:after:w-full
-              text-[1rem] flex items-center justify-center
+              flex items-center gap-1
             "
           >
-            {item}
+            <a href={links[item]}>{item}</a>
             <GoArrowUpRight />
           </li>
         ))}
