@@ -1,0 +1,32 @@
+<svg width="800" height="500" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="500" fill="white"/>
+
+  <!-- Outer border -->
+  <rect x="20" y="20" width="760" height="460"
+        fill="none" stroke="black" stroke-width="6"/>
+
+  <!-- Inverted top triangle -->
+  <polygon points="100,40 700,40 400,200"
+           fill="none" stroke="black" stroke-width="4"/>
+
+  <!-- Divider line under triangle tip -->
+  <line x1="180" y1="220" x2="620" y2="220"
+        stroke="black" stroke-width="3"/>
+
+  <!-- Main text -->
+  <text x="400" y="320"
+        font-family="Georgia, serif"
+        font-size="64"
+        fill="black"
+        text-anchor="middle"
+        letter-spacing="6">
+    CONTACT ME
+  </text>
+
+  <!-- Bottom decorative lines -->
+  <line x1="220" y1="370" x2="580" y2="370"
+        stroke="black" stroke-width="2"/>
+  <line x1="260" y1="395" x2="540" y2="395"
+        stroke="black" stroke-width="1"/>
+</svg>

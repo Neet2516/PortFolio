@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GoArrowUpRight } from "react-icons/go";
@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 const Navbar = () => {
   const navRef = useRef(null);
   const lastScroll = useRef(0);
+  const [nav,Setnav]= useState(false);
   const links = {
     Home: "#home",
     About: "#about",
@@ -20,10 +21,8 @@ const Navbar = () => {
   useEffect(() => {
     const nav = navRef.current;
 
-    // Initial hero state
     nav.classList.add("nav--hero");
 
-    // Auto-hide ONLY while in hero
     const hideTrigger = ScrollTrigger.create({
       start: 0,
       end: () => document.querySelector("#about")?.offsetTop || 0,
@@ -40,7 +39,6 @@ const Navbar = () => {
       },
     });
 
-    // 🔥 MAIN TRIGGER — ABOUT SECTION
     ScrollTrigger.create({
       trigger: "#about",
       start: "top top",
@@ -59,6 +57,7 @@ const Navbar = () => {
         // Switch colors
         nav.classList.remove("nav--hero");
         nav.classList.add("nav--scrolled");
+        Setnav(true);
 
         // Disable auto-hide
         hideTrigger.disable();
@@ -70,6 +69,7 @@ const Navbar = () => {
 
         nav.classList.remove("nav--scrolled");
         nav.classList.add("nav--hero");
+        Setnav(false);
 
         hideTrigger.enable();
       },
@@ -79,15 +79,15 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      className="
+      className={`
         relative z-50 w-screen
         px-8 py-5
         flex items-center justify-between
-        backdrop-blur-md
+        ${nav ? "backdrop-blur-sm transition-colors " : "text-white"}
         border-b border-black/10
         uppercase
-        transition-colors duration-500
-      "
+         duration-500
+      `}
     >
       <ul className="flex gap-8 text-sm">
         {Object.keys(links).map((item) => (

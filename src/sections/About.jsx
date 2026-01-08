@@ -104,7 +104,7 @@ const About = () => {
           </p>
 
           <p>
-            Using React, GSAP, and modern web technologies, I develop performant and scalable applications with a strong focus on maintainability and responsiveness. I emphasize usability, visual consistency, and attention to detail, aiming to deliver digital products that feel reliable, refined, and built with care.
+            Using React, GSAP, and modern web technologies, I develop performant and scalable applications with a strong focus on maintainability and responsiveness. I emphasize usabislity, visual consistency, and attention to detail, aiming to deliver digital products that feel reliable, refined, and built with care.
           </p>
         </div>
 
@@ -115,7 +115,7 @@ const About = () => {
             ref={imageRef}
             src={profile}
             alt="Navneet Sinha"
-            className="w-full max-w-sm grayscale "
+            className="w-full max-w-sm grayscale rounded-full"
           />
         </div>
       </div>

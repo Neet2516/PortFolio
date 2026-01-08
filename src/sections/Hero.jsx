@@ -87,7 +87,7 @@ const Hero = () => {
           ref={textRef}
           className="bebas-neue-regular text-white uppercase leading-none text-[clamp(3rem,12vw,20rem)]"
         >
-          {["NAVNEET SINHA", "\u00A0\u00A0Frontend Devloper"].map((word, i) => (
+          {["NAVNEET SINHA", "\u00A0\u00A0Frontend Developer"].map((word, i) => (
             <div key={i} className="overflow-hidden">
               <span className="block will-change-transform">
                 {word}

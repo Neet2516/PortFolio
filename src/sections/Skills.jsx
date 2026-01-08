@@ -1,5 +1,8 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 
 const SkillRow = ({ title, items }) => {
   const rowRef = useRef(null);
@@ -8,13 +11,17 @@ const SkillRow = ({ title, items }) => {
   const tweenRef = useRef(null);
 
   useEffect(() => {
-    tweenRef.current = gsap.to(marqueeRef.current, {
-      xPercent: -50,
-      duration: 12,
+    const track = marqueeRef.current.firstElementChild;
+    const width = track.scrollWidth / 2;
+
+    tweenRef.current = gsap.to(track, {
+      x: -width,
+      duration: 14,
       ease: "linear",
       repeat: -1,
       paused: true,
     });
+
 
     return () => tweenRef.current.kill();
   }, []);
@@ -66,7 +73,7 @@ const SkillRow = ({ title, items }) => {
       ref={rowRef}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="
+      className=" skill-row
         relative
         h-32
         bg-black text-white
@@ -80,41 +87,91 @@ const SkillRow = ({ title, items }) => {
       <h3
         ref={titleRef}
         className="
-          absolute inset-0
-          uppercase tracking-widest
-          text-[100%] w-full 
-        "
+    absolute inset-0
+    flex items-center justify-center
+    uppercase tracking-widest
+    text-[80%]
+    pointer-events-none
+  "
       >
         {title}
       </h3>
 
+
       {/* MARQUEE */}
       <div
         ref={marqueeRef}
-        className="
-          absolute inset-0
-          flex items-center
-          opacity-0
-          pointer-events-none
-        "
+        className="absolute inset-0 flex items-center opacity-0 pointer-events-none"
       >
         <div className="flex gap-16 whitespace-nowrap px-8">
           {[...items, ...items].map((item, i) => (
-            <span key={i} className="text-[80%] w-full">
+            <span key={i} className="text-[80%]">
               {item}
             </span>
           ))}
         </div>
       </div>
+
     </div>
   );
 };
 
 const Skills = () => {
+  const skillRef = useRef(null);
+  const titleRef = useRef(null);
+  const skillrowRef = useRef(null);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+
+      // TITLE
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, scale: 0.1 },
+        {
+          opacity: 1,
+          scale: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: skillRef.current,
+            start: "top 90%",
+            end: "top 40%",
+            scrub: true,
+          },
+        }
+      );
+
+      // EACH SKILL ROW
+      gsap.utils.toArray(".skill-row").forEach((row) => {
+        gsap.fromTo(
+          row, { y: 120, opacity: 0 },
+
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: row,
+              start: "top 90%",
+              end: "top 70%",
+              scrub: true,
+            },
+          }
+
+        );
+      });
+
+    }, skillRef);
+
+    return () => ctx.revert();
+  }, []);
+
+
+
   return (
     <section
+      ref={skillRef}
       id="skills"
-      className="min-h-screen bg-white text-black px-8 py-40"
+      className="min-h-screen bg-white text-black px-8 my-10"
     >
       {/* TITLE */}
       <h2 className="
@@ -122,14 +179,14 @@ const Skills = () => {
         uppercase
         text-9xl
         leading-none
-        mb-20
-      ">
-        Skills
+        mb-10
+      " ref={titleRef}>
+        Skills :- Love to play with
       </h2>
 
-      <div className="flex flex-col gap-6 max-w-full">
+      <div ref={skillrowRef} className="flex flex-col gap-6 max-w-full">
         <SkillRow
-          title="Programming Languages"
+          title="Languages"
           items={["C++", "JavaScript", "Python"]}
         />
 
