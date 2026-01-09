@@ -69,7 +69,7 @@ const Contact = () => {
   bebas-neue-regular
   bg-linear-to-br from-gray-900 to-gray-400
   bg-clip-text text-transparent
-  leading-[1.05]
+  leading-[1.05] underline
 ">
               <span className="block">Open to opportunities,</span>
               <span className="block">collaborations & ideas</span>

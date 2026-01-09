@@ -178,7 +178,7 @@ const Skills = () => {
         bebas-neue-regular
         uppercase
         text-9xl
-        leading-none
+        leading-none underline
         mb-10
       " ref={titleRef}>
         Skills :- Love to play with

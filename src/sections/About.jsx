@@ -87,7 +87,7 @@ const About = () => {
           uppercase
           text-[clamp(3rem,10vw,12rem)]
           leading-none
-          mb-15
+          mb-15 underline
         "
       >
         NAVNEET SINHA

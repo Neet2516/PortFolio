@@ -1,8 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
-import portfolio from '../assets/Project/portfolio.png';
-import nextstep from '../assets/Project/nextstep.png';
-import healthsnap from '../assets/Project/healthsnap.png';
+import portfolio from "../assets/Project/portfolio.png";
+import nextstep from "../assets/Project/nextstep.png";
+import healthsnap from "../assets/Project/healthsnap.png";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { IoMdArrowDropright } from "react-icons/io"
+gsap.registerPlugin(ScrollTrigger);
 
 
 const projects = [
@@ -15,154 +18,161 @@ const projects = [
     github: "https://github.com/yourname/portfolio",
   },
   {
-    title: "NextStep - lets connect",
-    description: "Conversion-focused SaaS website with smooth scroll effects.",
-    tech: "Next.js · Tailwind · Framer Motion",
+    title: "NextStep – lets connect",
+    description: "Designed and developed a feature-rich frontend job portal connecting job seekers and job givers with an intuitive user experience",
+    tech: "React.js, Tailwind CSS, GSAP, REST APIs  ,Redux Toolkit , Framer Motion ",
     image: nextstep,
     live: "https://nextstep-csi.netlify.app/",
     github: "https://github.com/Neet2516/CSI-Task-5-",
   },
   {
     title: "healthsnap",
-    description: "A motion-driven developer portfolio built with GSAP & React.",
-    tech: "React · GSAP · Tailwind",
+    description: "Built a personalized health dashboard allowing users to track their health map and view detailed health status insight",
+    tech: "React · GSAP · Tailwind ·  REST APIs  ",
     image: healthsnap,
     live: "https://healthsnap-psi.vercel.app/",
     github: "https://github.com/Neet2516/GDG-05",
   },
 ];
 
-
 const Projects = () => {
-  const sectionRef = useRef(null);
   const bgRef = useRef(null);
+  const imgRef = useRef(null);
+  const titleRef = useRef(null);
+  const sectionRef = useRef(null);
+  const contentRef = useRef([]);
   const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
-    if (activeIndex === null) {
-      gsap.to(bgRef.current, {
-        opacity: 0,
-        duration: 0.4,
-        ease: "power3.out",
+  if (!bgRef.current) return;
+
+  gsap.to(bgRef.current, {
+    opacity: activeIndex === null ? 0 : 1,
+    duration: 0.5,
+    ease: "power3.out",
+  });
+
+  if (imgRef.current) {
+    gsap.fromTo(
+      imgRef.current,
+      { scale: 1.05 },
+      { scale: 1, duration: 0.8, ease: "power3.out" }
+    );
+  }
+}, [activeIndex]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        titleRef.current,
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale: 1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: titleRef.current,
+            start: "top 85%",
+          },
+        }
+      );
+
+      // PROJECT ITEMS animation (THIS FIXES IT)
+      contentRef.current.forEach((el) => {
+        if (!el) return;
+
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 80 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+            },
+          }
+        );
       });
-    } else {
-      gsap.to(bgRef.current, {
-        opacity: 1,
-        duration: 0.4,
-        ease: "power3.out",
-      });
-    }
-  }, [activeIndex]);
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
 
   return (
     <section
-      ref={sectionRef}
       id="projects"
+      ref={sectionRef}
       className="relative min-h-screen bg-white text-black px-8 py-32 overflow-hidden"
     >
       {/* BACKGROUND IMAGE */}
       <div
         ref={bgRef}
-        className="pointer-events-none absolute inset-0 w-full h-full opacity-0 "
-
+        className="pointer-events-none absolute inset-0 opacity-0 transition"
       >
         {activeIndex !== null && (
           <img
+            ref={imgRef}
             src={projects[activeIndex].image}
             alt=""
             className="w-full h-full object-cover"
           />
         )}
-        <div className="absolute inset-0  backdrop-blur-sm" />
-
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-md" />
       </div>
+
       {/* TITLE */}
-      <h2 className="
-        bebas-neue-regular
-        uppercase
-        text-[clamp(3rem,8vw,10rem)]
-        mb-24
-        relative z-10
-      ">
+      <h2 ref={titleRef} className="bebas-neue-regular underline uppercase text-[clamp(3rem,8vw,10rem)] mb-24 relative z-10">
         Projects
       </h2>
 
       {/* PROJECT LIST */}
       <div className="relative z-10 flex flex-col gap-16">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            onMouseEnter={() => setActiveIndex(index)}
-            onMouseLeave={() => setActiveIndex(null)}
-            className="group cursor-pointer"
-          >
-            {/* TITLE */}
-            <h3
-              className="
-                bebas-neue-regular
-                uppercase
-                text-[clamp(2.5rem,6vw,6rem)]
-                leading-none
-                transition-all
-                duration-300
-                hover:text-red-800
-                group-hover:tracking-wider
-              "
-            >
-              {project.title}
-            </h3>
+        {projects.map((project, index) => {
+          const isActive = activeIndex === index;
 
-            {/* META */}
+          return (
             <div
-              className="
-    mt-4
-    max-w-xl
-    text-sm
-    text-black/70
-    opacity-0
-    translate-y-6
-    transition-all
-    duration-300
-    group-hover:opacity-100
-    group-hover:translate-y-0
-  "
+              key={index}
+              ref={(el) => (contentRef.current[index] = el)}
+              onMouseEnter={() => setActiveIndex(index)}
+              onMouseLeave={() => setActiveIndex(null)}
+              onClick={() => setActiveIndex(index)}
+              className="cursor-pointer"
             >
-              <p>{project.description}</p>
+              <h3
+                className={`bebas-neue-regular uppercase text-[clamp(2.5rem,6vw,6rem)]
+          transition-all duration-300 flex items-center 
+          ${isActive ? "tracking-wider text-black" : "text-black/40"}`}
+              >
+                <IoMdArrowDropright/>{project.title}
+              </h3>
 
-              <p className="mt-2 uppercase tracking-widest text-xs">
-                {project.tech}
-              </p>
+              <div
+                className={`mt-4 max-w-xl transition-all duration-300
+          ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+              >
+                <p className="text-black/80">{project.description}</p>
+                <p className="mt-2 uppercase tracking-widest text-xs text-black/60">
+                  {project.tech}
+                </p>
 
-              {/* LINKS */}
-              <div className="mt-4 flex gap-6 text-xs uppercase tracking-widest">
-                {project.live && (
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-black after:transition-all hover:after:w-full"
-                  >
+                <div className="mt-4 flex gap-6 text-xs uppercase tracking-widest">
+                  <a href={project.live} target="_blank" className="hover:underline">
                     Live
                   </a>
-                )}
-
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="relative after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-black after:transition-all hover:after:w-full"
-                  >
+                  <a href={project.github} target="_blank" className="hover:underline">
                     GitHub
                   </a>
-                )}
+                </div>
               </div>
             </div>
-
-          </div>
-        ))}
+          );
+        })}
       </div>
-
 
     </section>
   );
