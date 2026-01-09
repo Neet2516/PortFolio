@@ -1,16 +1,77 @@
-# React + Vite
+# Navneet Sinha — Interactive Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, motion-driven developer portfolio built to showcase my work, skills, and design sensibility through smooth interactions and clean typography.
 
-Currently, two official plugins are available:
+This portfolio focuses on **storytelling through motion**, **minimal layouts**, and **intentional user experience** rather than traditional card-based sections.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Smooth scrolling powered by **Lenis**
+- Advanced animations using **GSAP & ScrollTrigger**
+- Interactive project showcase with **hover-driven background transitions**
+- Infinite marquee skill interactions
+- Fully responsive across all devices
+- Clean, typography-first design
+- Email contact form powered by **EmailJS**
+- Light-theme focused design for clarity and readability
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+**Frontend**
+- React
+- Tailwind CSS
+- GSAP (GreenSock)
+- ScrollTrigger
+- Lenis (smooth scrolling)
+
+**Animations & Effects**
+- GSAP timelines
+- Hover-based interactions
+- Scroll-driven transitions
+
+**Utilities**
+- EmailJS
+- Vite
+- Git & GitHub
+
+---
+
+## 🚀 Sections Overview
+
+### Hero
+- Interactive spotlight effect
+- Typography-led introduction
+- Smooth entrance animations
+
+### About
+- Story-driven content layout
+- Scroll-based text animations
+- Minimal, distraction-free design
+
+### Skills
+- Hover-activated infinite marquee
+- Category-based skill presentation
+- Motion-enhanced interactions
+
+### Projects
+- Experimental project listing
+- Background image reveals on hover
+- Clean typography with subtle metadata
+- Live & GitHub links per project
+
+### Contact
+- Clear call-to-action
+- Animated form interactions
+- Social & professional links
+
+---
+
+## 📸 Preview
+
+> Live preview available here:  
+**🔗 [View Portfolio](https://your-live-portfolio-link.com)**
+
