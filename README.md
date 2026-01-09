@@ -73,5 +73,5 @@ This portfolio focuses on **storytelling through motion**, **minimal layouts**, 
 ## 📸 Preview
 
 > Live preview available here:  
-**🔗 [View Portfolio](https://your-live-portfolio-link.com)**
+**🔗 [View Portfolio]([https://portfolio-1-tofl.onrender.com])**
 
