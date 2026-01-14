@@ -98,7 +98,7 @@ export default function ContactCard() {
 
   return (
     <div
-      className="relative w-full max-w-[500px] md:max-w-none bg-white text-black overflow-hidden cursor-pointer md:cursor-default"
+      className="relative w-full max-w-125 md:max-w-none bg-white text-black overflow-hidden cursor-pointer md:cursor-default"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleMobileToggle} // Parent click for mobile

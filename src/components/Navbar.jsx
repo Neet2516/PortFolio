@@ -109,7 +109,7 @@ const Navbar = () => {
         ))}
       </ul>
     </nav>
-    <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-[400px]">
+    <nav className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-100 w-[90%] max-w-100">
         <div className="bg-black/80 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 flex justify-between items-center text-white shadow-2xl">
           {links.map((link) => (
             <a

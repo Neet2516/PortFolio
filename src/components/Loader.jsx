@@ -41,7 +41,7 @@ const Loader = ({ onComplete }) => {
     >
       <div
         ref={textRef}
-        className="overflow-hidden text-white bebas-neue-regular text-[clamp(2.5rem,8vw,7rem)]"
+        className="overflow-hidden text-white bebas-neue-regular uppercase tracking-wider text-[5rem]  md:text-[10rem]"
       >
         <span className="block">CREATING</span>
         <span className="block">DIGITAL</span>

@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import portfolio from "../assets/Project/portfolio.png";
 import nextstep from "../assets/Project/nextstep.png";
-import healthsnap from "../assets/Project/healthsnap.png";
 import hs2 from '../assets/Project/hs2.png'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IoMdArrowDropright } from "react-icons/io"

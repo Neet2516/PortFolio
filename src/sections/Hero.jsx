@@ -8,16 +8,29 @@ import { SpotLight } from "@react-three/drei";
 import Navbar from "../components/Navbar";
 import { useApp } from "../context/useApp";
 import HeroFooter from "../components/HeroFooter";
+import FloatingShape from "../canvas/FloatingShape";
+
+
 
 const Hero = () => {
   const spotlightRef = useRef(null);
   const textRef = useRef(null);
   const { isLoaded } = useApp();
+
   useEffect(() => {
     if (!isLoaded) return;
     if ("ontouchstart" in window) return;
 
     const spotlight = spotlightRef.current;
+    gsap.to(".three-fade", {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: "#about",
+        start: "top 80%",
+        scrub: true,
+      },
+    });
+
 
     gsap.set(spotlight, {
       xPercent: -50,
@@ -73,9 +86,16 @@ const Hero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundimg})` }}
-      />
+      >
+      </div>
 
       <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
+      {/* 3D Background Element */}
+      <div className="absolute inset-0 z-10 pointer-events-none three-fade">
+        <FloatingShape />
+      </div>
+
+
 
       <div
         ref={spotlightRef}
@@ -91,7 +111,7 @@ const Hero = () => {
           >
             {["NAVNEET SINHA", "\u00A0\u00A0Frontend Developer"].map((word, i) => (
               <div key={i} className="overflow-hidden">
-                <span className="block will-change-transform">
+                <span className={`block text-center md:text-left will-change-transform text-6xl md:text-[clamp(3rem,12vw,20rem)] mb-10 md:mb-10 ${i? 'text-gray-400' : 'text-white'} `}>
                   {word}
                 </span>
               </div>
@@ -101,8 +121,8 @@ const Hero = () => {
             <Navbar />
           </div>
         </div>
-        
-        <HeroFooter/>
+
+        <HeroFooter />
       </div>
     </section>
   );
