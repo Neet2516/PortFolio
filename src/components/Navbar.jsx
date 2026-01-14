@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";import { GoArrowUpRight, GoHome, GoPerson, GoBeaker, GoStack, GoMail } from "react-icons/go";
 
@@ -16,63 +16,61 @@ const Navbar = () => {
       { name: "Contact", href: "#contact", icon: <GoMail size={20} /> },
     ];
 
-  useEffect(() => {
-    const nav = navRef.current;
+  useLayoutEffect(() => {
+  const nav = navRef.current;
 
-    nav.classList.add("nav--hero");
+  nav.classList.add("nav--hero");
 
-    const hideTrigger = ScrollTrigger.create({
-      start: 0,
-      end: () => document.querySelector("#about")?.offsetTop || 0,
-      onUpdate: (self) => {
-        const current = self.scroll();
+  const hideTrigger = ScrollTrigger.create({
+    start: 0,
+    endTrigger: "#about",
+    end: "top top",
+    onUpdate: (self) => {
+      const current = self.scroll();
 
-        if (current > lastScroll.current && current > 120) {
-          gsap.to(nav, { y: -100, opacity: 0, duration: 0.4 });
-        } else {
-          gsap.to(nav, { y: 0, opacity: 1, duration: 0.4 });
-        }
+      if (current > lastScroll.current && current > 120) {
+        gsap.to(nav, { y: -100, opacity: 0, duration: 0.4 });
+      } else {
+        gsap.to(nav, { y: 0, opacity: 1, duration: 0.4 });
+      }
 
-        lastScroll.current = current;
-      },
-    });
+      lastScroll.current = current;
+    },
+  });
 
-    ScrollTrigger.create({
-      trigger: "#about",
-      start: "top top",
+  ScrollTrigger.create({
+    trigger: "#about",
+    start: "top top",
 
-      onEnter: () => {
-        // Fix navbar
-        gsap.set(nav, {
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          y: 0,
-          opacity: 1,
-        });
+    onEnter: () => {
+      gsap.set(nav, {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        y: 0,
+        opacity: 1,
+      });
 
-        // Switch colors
-        nav.classList.remove("nav--hero");
-        nav.classList.add("nav--scrolled");
-        Setnav(true);
+      nav.classList.remove("nav--hero");
+      nav.classList.add("nav--scrolled");
 
-        // Disable auto-hide
-        hideTrigger.disable();
-      },
+      hideTrigger.disable();
+    },
 
-      onLeaveBack: () => {
-        // Back to hero behavior
-        gsap.set(nav, { position: "relative" });
+    onLeaveBack: () => {
+      gsap.set(nav, { position: "relative" });
 
-        nav.classList.remove("nav--scrolled");
-        nav.classList.add("nav--hero");
-        Setnav(false);
+      nav.classList.remove("nav--scrolled");
+      nav.classList.add("nav--hero");
 
-        hideTrigger.enable();
-      },
-    });
-  }, []);
+      hideTrigger.enable();
+    },
+  });
+
+  ScrollTrigger.refresh();
+}, []);
+
 
   return (
     <>
