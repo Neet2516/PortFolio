@@ -107,7 +107,7 @@ const Hero = () => {
         <div>
           <h1
             ref={textRef}
-            className="bebas-neue-regular text-white uppercase leading-none  text-6xl md:text-[clamp(3rem,12vw,20rem)] pt-10 md:pt-0"
+            className="bebas-neue-regular text-white uppercase leading-none  text-6xl md:text-[clamp(3rem,12vw,20rem)] pt-10 md:pt-20"
           >
             {["NAVNEET SINHA", "\u00A0\u00A0Frontend Developer"].map((word, i) => (
               <div key={i} className="overflow-hidden">
