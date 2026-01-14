@@ -57,10 +57,10 @@ const Contact = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative min-h-screen bg-white text-black px-6 md:px-8 py-6 md:py-12 flex flex-col justify-between gap-12"
+      className="relative min-h-screen bg-white text-black px-6 md:px-8 py-16 md:py-24 flex flex-col justify-between gap-12"
     >
       {/* MAIN CONTENT */}
-      
+      {/* Changed flex-col for mobile, flex-row for desktop. Adjusted gap. */}
       <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-12 lg:gap-32 xl:gap-50">
         
         <div ref={textRef} className="max-w-5xl w-full text-center lg:text-left">

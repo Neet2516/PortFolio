@@ -84,22 +84,30 @@ const About = () => {
         ref={titleRef}
         className="
           bebas-neue-regular
-          uppercase
-          text-[clamp(3rem,10vw,12rem)]
+          uppercase text-6xl
+          md:text-[clamp(3rem,10vw,12rem)]
           leading-none
-          mb-15 underline
+          mb-15 underline text-center
         "
       >
         NAVNEET SINHA
       </h2>
 
       <div className="grid md:grid-cols-2 gap-28 items-start">
+        <div className="relative block md:hidden">
+          <img
+            ref={imageRef}
+            src={profile}
+            alt="Navneet Sinha"
+            className="w-full max-w-sm grayscale rounded-full"
+          />
+        </div>
         {/* STORY */}
         <div ref={textRef} className="text-[1.15rem] leading-[1.6] max-w-xl">
           <p className="mb-10">I’m a frontend developer focused on building modern, engaging web experiences that feel intentional, polished, and easy to use across devices and platforms.
           </p>
 
-          <p className="mb-10">
+          <p className="mb-10 hidden md:block">
             My work sits at the intersection of design and engineering, where layout, typography, motion, and interaction come together to form intuitive and consistent user experiences. I approach development with a strong appreciation for design systems and interaction patterns, using motion and transitions to guide users naturally without overwhelming them.
           </p>
 
@@ -110,7 +118,7 @@ const About = () => {
 
 
         {/* IMAGE */}
-        <div className="relative">
+        <div className="relative hidden md:block">
           <img
             ref={imageRef}
             src={profile}

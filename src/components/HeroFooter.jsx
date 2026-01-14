@@ -32,7 +32,7 @@ const HeroFooter = () => {
   return (
     <footer
       className={`
-        absolute bottom-0 left-0 w-full
+        absolute bottom-50 md:bottom-0 left-0 w-full
         z-999
         transition-all duration-700 ease-out
         ${

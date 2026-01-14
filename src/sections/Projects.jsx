@@ -3,6 +3,7 @@ import gsap from "gsap";
 import portfolio from "../assets/Project/portfolio.png";
 import nextstep from "../assets/Project/nextstep.png";
 import healthsnap from "../assets/Project/healthsnap.png";
+import hs2 from '../assets/Project/hs2.png'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IoMdArrowDropright } from "react-icons/io"
 gsap.registerPlugin(ScrollTrigger);
@@ -11,14 +12,14 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     title: "Interactive Portfolio",
-    description: "Data-heavy dashboard with real-time UI updates.",
-    tech: "React · Chart.js · Redux",
+    description: "Modern animated Portfolio website ",
+    tech: "React GSAP Lenis Motion Tailwind CSS",
     image: portfolio,
-    live: "https://your-portfolio-link.com",
-    github: "https://github.com/yourname/portfolio",
+    live: "https://portfolio-1-tofl.onrender.com",
+    github: "https://github.com/Neet2516/PortFolio",
   },
   {
-    title: "NextStep – lets connect",
+    title: "NextStep – lets dive",
     description: "Designed and developed a feature-rich frontend job portal connecting job seekers and job givers with an intuitive user experience",
     tech: "React.js, Tailwind CSS, GSAP, REST APIs  ,Redux Toolkit , Framer Motion ",
     image: nextstep,
@@ -26,10 +27,10 @@ const projects = [
     github: "https://github.com/Neet2516/CSI-Task-5-",
   },
   {
-    title: "healthsnap",
+    title: "healthsnap - your  true lifepartner",
     description: "Built a personalized health dashboard allowing users to track their health map and view detailed health status insight",
     tech: "React · GSAP · Tailwind ·  REST APIs  ",
-    image: healthsnap,
+    image: hs2,
     live: "https://healthsnap-psi.vercel.app/",
     github: "https://github.com/Neet2516/GDG-05",
   },
@@ -106,7 +107,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative min-h-screen bg-white text-black px-8 py-32 overflow-hidden"
+      className="relative min-h-screen bg-white text-black px-8 py-10 md:py-32 overflow-hidden "
     >
       {/* BACKGROUND IMAGE */}
       <div
@@ -125,8 +126,9 @@ const Projects = () => {
       </div>
 
       {/* TITLE */}
-      <h2 ref={titleRef} className="bebas-neue-regular underline uppercase text-[clamp(3rem,8vw,10rem)] mb-24 relative z-10">
-        Projects
+      <h2 ref={titleRef} className="bebas-neue-regular text-6xl text-center  uppercase md:text-[clamp(3rem,8vw,10rem)] mb-24 relative z-10">
+        <span  className="underline">Projects</span><br/>
+        <span className="text-2xl  lowercase tinos-regular opacity-75 text-gray-600 block md:hidden mt-5">  Click to interact </span>
       </h2>
 
       {/* PROJECT LIST */}
@@ -153,7 +155,7 @@ const Projects = () => {
 
               <div
                 className={`mt-4 max-w-xl transition-all duration-300
-          ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+          ${isActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} font-extrabold`}
               >
                 <p className="text-black/80">{project.description}</p>
                 <p className="mt-2 uppercase tracking-widest text-xs text-black/60">

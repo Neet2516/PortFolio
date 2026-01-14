@@ -89,8 +89,8 @@ const SkillRow = ({ title, items }) => {
         className="
     absolute inset-0
     flex items-center justify-center
-    uppercase tracking-widest
-    text-[80%]
+    uppercase tracking-widest text-4xl
+    md:text-[80%]
     pointer-events-none
   "
       >
@@ -171,18 +171,19 @@ const Skills = () => {
     <section
       ref={skillRef}
       id="skills"
-      className="min-h-screen bg-white text-black px-8 my-10"
+      className="min-h-screen bg-white text-black px-8 md:my-10"
     >
       {/* TITLE */}
       <h2 className="
         bebas-neue-regular
-        uppercase
-        text-9xl
-        leading-none underline
+        uppercase text-6xl 
+        md:text-9xl
+        leading-none underline text-center
         mb-10
       " ref={titleRef}>
-        Skills :- Love to play with
+        Skills :- <br className="block  md:hidden"/>Love to play with 
       </h2>
+      <span className="block md:hidden  text-2xl text-gray-400 text-center mb-10 ">Scroll and Click to interact</span>
 
       <div ref={skillrowRef} className="flex flex-col gap-6 max-w-full">
         <SkillRow

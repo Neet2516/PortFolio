@@ -82,24 +82,27 @@ const Hero = () => {
         className="pointer-events-none fixed h-72 w-72 rounded-full bg-white/10 blur-3xl mix-blend-screen"
       />
 
-      <div className="relative z-20 h-full  px-8">
-        <h1
-          ref={textRef}
-          className="bebas-neue-regular text-white uppercase leading-none text-[clamp(3rem,12vw,20rem)]"
-        >
-          {["NAVNEET SINHA", "\u00A0\u00A0Frontend Developer"].map((word, i) => (
-            <div key={i} className="overflow-hidden">
-              <span className="block will-change-transform">
-                {word}
-              </span>
-            </div>
-          ))}
-        </h1>
-        <div className="mt-2">
-          <Navbar />
+      {/* Added flex and pb-20 on mobile only to prevent bottom-nav overlap */}
+      <div className="relative z-20 h-full px-8 flex flex-col justify-between pb-20 md:pb-0">
+        <div>
+          <h1
+            ref={textRef}
+            className="bebas-neue-regular text-white uppercase leading-none  text-6xl md:text-[clamp(3rem,12vw,20rem)] pt-10 md:pt-0"
+          >
+            {["NAVNEET SINHA", "\u00A0\u00A0Frontend Developer"].map((word, i) => (
+              <div key={i} className="overflow-hidden">
+                <span className="block will-change-transform">
+                  {word}
+                </span>
+              </div>
+            ))}
+          </h1>
+          <div className="mt-2">
+            <Navbar />
+          </div>
         </div>
+        
         <HeroFooter/>
-
       </div>
     </section>
   );
