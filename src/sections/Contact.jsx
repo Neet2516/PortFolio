@@ -126,7 +126,6 @@ const Contact = () => {
       >
         {/* LEFT */}
         <div className="text-center md:text-left">
-          <p className="font-medium">+91 XXXXX XXXXX</p>
           <p>getneet.25@gmail.com</p>
         </div>
 
