@@ -124,9 +124,8 @@ const Contact = () => {
         ref={footerRef}
         className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-black/80 border-t border-black/5 pt-12 pb-20 md:pb-0"
       >
-        {/* LEFT */}
         <div className="text-center md:text-left">
-          <p>getneet.25@gmail.com</p>
+          <p>getneet.25@gmail.com </p>
         </div>
 
         {/* CENTER */}
